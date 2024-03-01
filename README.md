@@ -49,20 +49,21 @@ Please note this tutorial is for demonstration purpose only, please **_DO NOT_**
 
 - Your AWS Profile have proper permission configured.
 - All the tools required were setup properly
-- All the resources are under `us-east-1`
+- All the resources are under `us-east-2` # ohio
 - The cluster name would be `eks-demo`
 
 ## Guideline of the tutorial
 
 - Goal 1: Create EKS Cluster with `eksctl`
-- Goal 2: Deploy nginx with Application Load Balancer (ALB)
-- Goal 3: Find out why Application Load Balancer (ALB) not working?
-- Goal 4: Find out why Horizontal Pod Autoscaling (HPA) not working?
-- Goal 5: HPA is working. Now I want to set Nginx replicas with `kubectl scale ...` but failed. Why?
-- Goal 6: Remove HPA and try to scale to `20` manually
-- Goal 7: Try to turn ALB entry from HTTP to HTTPS
-- Goal 8: How to switch to Network Load Balancer (NLB)?
-- Goal 9: Cleanup
+- Goal 2: Add user sso to admin eks cluster
+- Goal 3: Deploy nginx with Application Load Balancer (ALB)
+- Goal 4: Find out why Application Load Balancer (ALB) not working?
+- Goal 5: Find out why Horizontal Pod Autoscaling (HPA) not working?
+- Goal 6: HPA is working. Now I want to set Nginx replicas with `kubectl scale ...` but failed. Why?
+- Goal 7: Remove HPA and try to scale to `20` manually
+- Goal 8: Try to turn ALB entry from HTTP to HTTPS
+- Goal 9: How to switch to Network Load Balancer (NLB)?
+- Goal 10: Cleanup
 
 
 ### Goal 1: Create EKS Cluster with `eksctl`
@@ -151,7 +152,22 @@ ip-192-168-121-236.ec2.internal   Ready    <none>   5m47s   v1.29.0-eks-5e0fdde
 ip-192-168-90-226.ec2.internal    Ready    <none>   5m49s   v1.29.0-eks-5e0fdde
 ```
 
-### Goal 2: Deploy nginx with Application Load Balancer (ALB)
+### Goal 2: Add user to admin eks cluster console aws
+
+Los administradores de clúster en Kubernetes utilizan ConfigMaps para proporcionar configuración global o compartida a todos los componentes del clúster, como controladores, operadores y servicios.
+
+#### Uso específico:
+
+- Configuración global del clúster, como políticas de red, límites de recursos y configuración de autenticación.
+- Definición de parámetros de configuración predeterminados para aplicaciones y servicios desplegados en el clúster.
+- Personalización de componentes del sistema, como API Server, Controller Manager y Scheduler.
+
+#### Ejemplo de aplicación:
+
+Un administrador de clúster puede utilizar ConfigMaps para definir configuraciones de seguridad, como políticas de acceso a recursos, tokens de autenticación y certificados de seguridad, que se aplicarán de forma global a todo el clúster.
+
+
+### Goal 3: Deploy nginx with Application Load Balancer (ALB)
 
 At this stage, you would need to have `kubectl` installed. Then you should be able to create `Deployment`, `HPA`, `Service` and `Ingress` resources.
 

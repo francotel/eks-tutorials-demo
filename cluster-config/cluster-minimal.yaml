@@ -32,9 +32,9 @@ iam:
 managedNodeGroups:
   - name: mng-1
     amiFamily: AmazonLinux2
-    minSize: 2
-    maxSize: 5
-    desiredCapacity: 2
+    minSize: 1
+    maxSize: 2
+    desiredCapacity: 1
     volumeSize: 30
     volumeType: gp3
     instanceTypes:
@@ -64,8 +64,8 @@ addons:
     version: latest
   - name: kube-proxy
     version: latest
-  - name: eks-pod-identity-agent
-    version: latest
+  # - name: eks-pod-identity-agent
+  #   version: latest
 
 cloudWatch:
   # ref: https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html
